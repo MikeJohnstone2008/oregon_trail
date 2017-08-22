@@ -13,6 +13,15 @@ function Traveler(name) {
   this.isHealthy = true;
   }
 
+//for reference the es6 way
+// class Traveler {
+//   constructor(name){
+//     this.name = name;
+//     this.food = getRandomIntInclusive(1,100)
+//     this.isHealthy = true;
+//   }
+// }
+
 //make an object called wagon that hasA wagon has a few properties as well: a passengers list (array) and a capacity (number).
 function Wagon(capacity){
   this.passengers = [];
@@ -30,15 +39,15 @@ function makeWagon(capacity)  {
   return new Wagon(capacity);
 }
 
-// Create a traveler with the name 'Henrietta' called 'traveler' that calls th makeTraveler function:
-let traveler = makeTraveler('Henrietta');
-
-//create a 2nd traveler2, called Juan:
-let traveler2 = makeTraveler('Juan');
-
-
-// Create a wagon called 'wagon'
-let wagon = makeWagon(5);
+// // Create a traveler with the name 'Henrietta' called 'traveler' that calls th makeTraveler function:
+// let traveler = makeTraveler('Henrietta');
+//
+// //create a 2nd traveler2, called Juan:
+// let traveler2 = makeTraveler('Juan');
+//
+//
+// // Create a wagon called 'wagon'
+// let wagon = makeWagon(5);
 
 //have the traveler join the wagon if capacity allows: if capacity >= 1, push traver to wagon array
 // passengerCount + availability = capacity
@@ -67,19 +76,19 @@ function quarantine(wagon) {
 
 
 
-console.log(wagon.capacity);
+// console.log(wagon.capacity);
 //make a function for travel to hunt:
 function hunt(traveler) {
-  console.log('traveler.food before the hunt: ' + traveler.food);
+  // console.log('traveler.food before the hunt: ' + traveler.food);
   if (getRandomIntInclusive(0,1) > 0){
     traveler.food = traveler.food + 100;
-    console.log('after hunt food is: ' + traveler.food);
+    // console.log('after hunt food is: ' + traveler.food);
   } //set this.food + 100 //evaluate condition, if 1 = true, if 0 = false
 
 }
 //make a function for the traveler to eat, and if < 20, set isHealthy = false.
 function eat(traveler) {
-  console.log('traveler food available to eat: ' + traveler.food);
+  // console.log('traveler food available to eat: ' + traveler.food);
   //if food>=20, food = food - 20
   if (traveler.food >= 20){
     traveler.food = traveler.food - 20;
@@ -88,19 +97,34 @@ function eat(traveler) {
     traveler.food = 0;
   }
   //if food < 20, set food = 0, set isHealthy = false.
-  console.log('After eating, food: ' + traveler.food)
-  console.log('After eating, isHealthy: ' + traveler.isHealthy)
+  // console.log('After eating, food: ' + traveler.food)
+  // console.log('After eating, isHealthy: ' + traveler.isHealthy)
 }
-join(wagon, traveler);
-join(wagon,  traveler2);
+
+// food(wagon)
+// Return the total amount of food among all occupants of the wagon.
+function food(wagon) {
+  let totalfood = 0;
+  for (let i=0; i<wagon.passengers.length; i++){
+    totalfood = totalfood + wagon.passengers[i].food;
+  }
+  return totalfood;
+}
+
+// Create a wagon called 'wagon'
+let wagon = makeWagon(5);
+// Create a traveler with the name 'Henrietta' called 'traveler'
+let traveler = makeTraveler('Henrietta');
+// Create a traveler with the name 'Juan' called 'traveler2'
+let traveler2 = makeTraveler('Juan');
+
 hunt(traveler); // maybe get more food
 eat(traveler2);
-eat(traveler2);
-eat(traveler2);
-eat(traveler2);
-console.log(traveler2);
-//console.log('traveler food after the hunt function:' + traveler.food);
-console.log(wagon);
+eat(traveler2); // juan is hungry
+join(wagon, traveler);
+join(wagon, traveler2);
+
 console.log(quarantine(wagon)); // print true if someone is sick, false otherwise
+console.log(food(wagon)); // print juan's food + henrietta's food
 
 })()
