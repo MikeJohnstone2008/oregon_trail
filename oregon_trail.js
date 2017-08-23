@@ -13,7 +13,7 @@ function Traveler(name) {
   this.isHealthy = true;
   }
 
-//for reference the es6 way
+//for reference the es6 way321
 // class Traveler {
 //   constructor(name){
 //     this.name = name;
@@ -70,12 +70,6 @@ function quarantine(wagon) {
         }
       }return false;
 }
-//Return the total amount of food among all occupants of the wagon.
-// food(wagon)
-
-
-
-
 // console.log(wagon.capacity);
 //make a function for travel to hunt:
 function hunt(traveler) {
